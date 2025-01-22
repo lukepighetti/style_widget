@@ -1,39 +1,47 @@
-<!--
-This README describes the package. If you publish this package to pub.dev,
-this README's contents appear on the landing page for your package.
+# style_widget
 
-For information about how to write a good package README, see the guide for
-[writing package pages](https://dart.dev/tools/pub/writing-package-pages).
+https://github.com/lukepighetti/style_widget/blob/main/example/lib/main.dart#L35-L73
 
-For general information about developing packages, see the Dart guide for
-[creating packages](https://dart.dev/guides/libraries/create-packages)
-and the Flutter guide for
-[developing packages and plugins](https://flutter.dev/to/develop-packages).
--->
-
-TODO: Put a short description of the package here that helps potential users
-know whether this package might be useful for them.
-
-## Features
-
-TODO: List what your package can do. Maybe include images, gifs, or videos.
-
-## Getting started
-
-TODO: List prerequisites and provide or point to information on how to
-start using the package.
-
-## Usage
-
-TODO: Include short and useful examples for package users. Add longer examples
-to `/example` folder.
+idea from: https://x.com/luke_pighetti/status/1882101453571154076
 
 ```dart
-const like = 'sample';
+StyleWidget(
+  style: (s) => s
+      .marginAll()
+      .paddingAll()
+      .backgroundColor(Colors.black)
+      .foregroundColor(Colors.white)
+      .boxShadow(const BoxShadow(blurRadius: 8))
+      .iconSize(24)
+      .borderRadius(8)
+      .animated(delay: const Duration(milliseconds: 500))
+      .collapseY(!visible)
+      .collapseX(!visible)
+      .opacity(visible ? 1 : 0)
+      .translate(y: visible ? 0 : 20)
+      .rotate(visible ? 0 : 45)
+      .fontSize(20)
+      .fontFamily('courier')
+      .fontWeight(FontWeight.bold)
+      .rotateAlignment(Alignment.center),
+  child: Column(
+    mainAxisSize: MainAxisSize.min,
+    children: [
+      const Text("Hello"),
+      const Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Icon(Icons.check),
+          Text("Subtitle"),
+        ],
+      ),
+      FilledButton(
+        child: const Text("Continue"),
+        onPressed: () {
+          print("boom");
+        },
+      )
+    ],
+  ),
+);
 ```
-
-## Additional information
-
-TODO: Tell users more about the package: where to find more information, how to
-contribute to the package, how to file issues, what response they can expect
-from the package authors, and more.

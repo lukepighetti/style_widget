@@ -1,6 +1,7 @@
 name: style_widget
 description: A concept for decorator syntax without the namespace leakage
 version: 0.0.1
+repository: https://github.com/lukepighetti/style_widget/
 
 environment:
   sdk: ^3.5.4
