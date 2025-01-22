@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:styled_widget/styled_widget.dart';
+import 'package:style_widget/style_widget.dart';
 
 void main() {
   runApp(const MyApp());
@@ -32,25 +32,25 @@ class _MyAppState extends State<MyApp> {
                 height: 200,
                 child: Center(
                   child: Placeholder(
-                    child: StyledWidget(
+                    child: StyleWidget(
                       style: (s) => s
-                        ..marginAll()
-                        ..paddingAll()
-                        ..backgroundColor(Colors.black)
-                        ..foregroundColor(Colors.white)
-                        ..boxShadow(const BoxShadow(blurRadius: 8))
-                        ..iconSize(24)
-                        ..borderRadius(8)
-                        ..animated(delay: const Duration(milliseconds: 500))
-                        ..collapseY(!visible)
-                        ..collapseX(!visible)
-                        ..opacity(visible ? 1 : 0)
-                        ..translate(y: visible ? 0 : 20)
-                        ..rotate(visible ? 0 : 45)
-                        ..fontSize(20)
-                        ..fontFamily('courier')
-                        ..fontWeight(FontWeight.bold)
-                        ..rotateAlignment(Alignment.center),
+                          .marginAll()
+                          .paddingAll()
+                          .backgroundColor(Colors.black)
+                          .foregroundColor(Colors.white)
+                          .boxShadow(const BoxShadow(blurRadius: 8))
+                          .iconSize(24)
+                          .borderRadius(8)
+                          .animated(delay: const Duration(milliseconds: 500))
+                          .collapseY(!visible)
+                          .collapseX(!visible)
+                          .opacity(visible ? 1 : 0)
+                          .translate(y: visible ? 0 : 20)
+                          .rotate(visible ? 0 : 45)
+                          .fontSize(20)
+                          .fontFamily('courier')
+                          .fontWeight(FontWeight.bold)
+                          .rotateAlignment(Alignment.center),
                       child: Column(
                         mainAxisSize: MainAxisSize.min,
                         children: [

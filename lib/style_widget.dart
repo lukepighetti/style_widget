@@ -4,25 +4,25 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 
-class StyledWidget extends StatefulWidget {
-  const StyledWidget({
+class StyleWidget extends StatefulWidget {
+  const StyleWidget({
     super.key,
     required this.style,
     required this.child,
   });
 
-  final void Function(StyledContext s) style;
+  final void Function(StyleContext s) style;
 
   final Widget child;
 
   @override
-  State<StyledWidget> createState() => _StyledWidgetState();
+  State<StyleWidget> createState() => _StyleWidgetState();
 }
 
-class _StyledWidgetState extends State<StyledWidget> {
+class _StyleWidgetState extends State<StyleWidget> {
   @override
   Widget build(BuildContext context) {
-    final s = StyledContext();
+    final s = StyleContext();
     widget.style(s);
 
     return TweenAnimationBuilder(
@@ -93,11 +93,11 @@ class _StyledWidgetState extends State<StyledWidget> {
   }
 }
 
-class StyledContext {
+class StyleContext {
   Duration _duration = Duration.zero;
   Curve _curve = Curves.easeInOut;
 
-  void animated({
+  StyleContext animated({
     final Duration delay = Duration.zero,
     final Duration duration = const Duration(milliseconds: 500),
     final Curve curve = Curves.easeInOut,
@@ -106,125 +106,148 @@ class StyledContext {
     final (d, c) = _delayedCurve(delay, duration, curve);
     _duration = d;
     _curve = c;
+    return this;
   }
 
   double _opacity = 1;
-  void opacity(double x) {
+  StyleContext opacity(double x) {
     _opacity = x;
+    return this;
   }
 
   Offset _translation = Offset.zero;
 
-  void translate({double x = 0, double y = 0}) {
+  StyleContext translate({double x = 0, double y = 0}) {
     _translation = _translation + Offset(x, y);
+    return this;
   }
 
   double _rotate = 0;
 
-  void rotate(double degrees) {
+  StyleContext rotate(double degrees) {
     _rotate = degrees * pi / 180;
+    return this;
   }
 
-  void rotateRadians(double radians) {
+  StyleContext rotateRadians(double radians) {
     _rotate = radians;
+    return this;
   }
 
   bool _collapseY = false;
-  void collapseY(bool value) {
+  StyleContext collapseY(bool value) {
     _collapseY = value;
+    return this;
   }
 
   bool _collapseX = false;
-  void collapseX(bool value) {
+  StyleContext collapseX(bool value) {
     _collapseX = value;
+    return this;
   }
 
   AlignmentGeometry _rotateAlignment = Alignment.center;
 
   @visibleForTesting
   // isn't behaving the way I'd expect it to
-  void rotateAlignment(AlignmentGeometry x) {
+  StyleContext rotateAlignment(AlignmentGeometry x) {
     _rotateAlignment = x;
+    return this;
   }
 
   EdgeInsetsGeometry _padding = EdgeInsets.zero;
 
-  void paddingAll([double value = 10]) {
+  StyleContext paddingAll([double value = 10]) {
     _padding = _padding.add(EdgeInsetsDirectional.all(value));
+    return this;
   }
 
-  void padding({double s = 0, double t = 0, double e = 0, double b = 0}) {
+  StyleContext padding({double s = 0, double t = 0, double e = 0, double b = 0}) {
     _padding = _padding.add(EdgeInsetsDirectional.fromSTEB(s, t, e, b));
+    return this;
   }
 
-  void paddingLTRB({double l = 0, double t = 0, double r = 0, double b = 0}) {
+  StyleContext paddingLTRB({double l = 0, double t = 0, double r = 0, double b = 0}) {
     _padding = _padding.add(EdgeInsets.fromLTRB(l, t, r, b));
+    return this;
   }
 
-  void paddingXY({double x = 0, double y = 0}) {
+  StyleContext paddingXY({double x = 0, double y = 0}) {
     _padding = _padding
         .add(EdgeInsetsDirectional.symmetric(horizontal: x, vertical: y));
+        return this;
   }
 
   EdgeInsetsGeometry _margin = EdgeInsets.zero;
 
-  void marginAll([double value = 10]) {
+  StyleContext marginAll([double value = 10]) {
     _margin = _margin.add(EdgeInsetsDirectional.all(value));
+    return this;
   }
 
-  void margin({double s = 0, double t = 0, double e = 0, double b = 0}) {
+  StyleContext margin({double s = 0, double t = 0, double e = 0, double b = 0}) {
     _margin = _margin.add(EdgeInsetsDirectional.fromSTEB(s, t, e, b));
+    return this;
   }
 
-  void marginLTRB({double l = 0, double t = 0, double r = 0, double b = 0}) {
+  StyleContext marginLTRB({double l = 0, double t = 0, double r = 0, double b = 0}) {
     _margin = _margin.add(EdgeInsets.fromLTRB(l, t, r, b));
+    return this;
   }
 
-  void marginXY({double x = 0, double y = 0}) {
+  StyleContext marginXY({double x = 0, double y = 0}) {
     _margin = _margin
         .add(EdgeInsetsDirectional.symmetric(horizontal: x, vertical: y));
+        return this;
   }
 
   Color _backgroundColor = Colors.transparent;
-  void backgroundColor(Color color) {
+  StyleContext backgroundColor(Color color) {
     _assertUseOnce(_backgroundColor == Colors.transparent, "backgroundColor()");
     _backgroundColor = color;
+    return this;
   }
 
   Color? _foregroundColor;
-  void foregroundColor(Color color) {
+  StyleContext foregroundColor(Color color) {
     _assertUseOnce(_foregroundColor == null, "foregroundColor()");
     _foregroundColor = color;
+    return this;
   }
 
   double? _iconSize;
-  void iconSize(double size) {
+  StyleContext iconSize(double size) {
     _assertUseOnce(_iconSize == null, "iconSize()");
     _iconSize = size;
+    return this;
   }
 
   double? _borderRadius;
 
-  void borderRadius(double radius) {
+  StyleContext borderRadius(double radius) {
     _assertUseOnce(_borderRadius == null, "borderRadius()");
     _borderRadius = radius;
+    return this;
   }
 
   final List<BoxShadow> _boxShadows = [];
-  void boxShadow(BoxShadow shadow) {
+  StyleContext boxShadow(BoxShadow shadow) {
     _boxShadows.add(shadow);
+    return this;
   }
 
   TextStyle _textStyle = const TextStyle();
-  void textStyle(TextStyle style) {
+  StyleContext textStyle(TextStyle style) {
     _textStyle = _textStyle.merge(style);
+    return this;
   }
 
-  void fontSize(double size) {
+  StyleContext fontSize(double size) {
     textStyle(TextStyle(fontSize: size));
+    return this;
   }
 
-  void fontWeight(FontWeight weight) {
+  StyleContext fontWeight(FontWeight weight) {
     textStyle(
       TextStyle(
         fontWeight: weight,
@@ -233,10 +256,12 @@ class StyledContext {
         ],
       ),
     );
+    return this;
   }
 
-  void fontFamily(String family) {
+  StyleContext fontFamily(String family) {
     textStyle(TextStyle(fontFamily: family));
+    return this;
   }
 }
 
